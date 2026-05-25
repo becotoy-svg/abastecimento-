@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulta de Postos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Consulta de localidades</p>
+        <h1>Consulta de Postos</h1>
+        <p>Filtre por estado, município e bairro para encontrar rapidamente os postos cadastrados.</p>
+      </div>
+      <div class="stats">
+        <strong id="totalCount">0</strong>
+        <span>registros</span>
+      </div>
+    </section>
+
+    <section class="filters" aria-label="Filtros de consulta">
+      <label>
+        Estado
+        <select id="estado"><option value="">Todos</option></select>
+      </label>
+      <label>
+        Município
+        <select id="municipio"><option value="">Todos</option></select>
+      </label>
+      <label>
+        Bairro
+        <select id="bairro"><option value="">Todos</option></select>
+      </label>
+      <label class="search-field">
+        Buscar por nome, endereço, CNPJ ou terminal
+        <input id="busca" type="search" placeholder="Digite para buscar..." />
+      </label>
+      <button id="limpar" type="button">Limpar filtros</button>
+    </section>
+
+    <section class="summary">
+      <span id="resultCount">0 resultados</span>
+      <span id="activeFilters">Sem filtros aplicados</span>
+    </section>
+
+    <section id="mapSection" class="map-section" hidden aria-label="Mapa do posto selecionado">
+      <div class="map-header">
+        <div>
+          <p class="eyebrow-map">Localização no mapa</p>
+          <h2 id="mapTitle">Localização do posto</h2>
+          <p id="mapAddress"></p>
+        </div>
+        <div class="map-actions">
+          <a id="openMap" class="link-button" href="#" target="_blank" rel="noopener">Abrir no Google Maps</a>
+          <button id="closeMap" type="button" class="secondary-button">Fechar mapa</button>
+        </div>
+      </div>
+      <iframe id="mapFrame" title="Mapa do posto selecionado" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <p class="map-note">O mapa usa o endereço cadastrado na planilha. Confirme o ponto exato no Google Maps antes de se deslocar.</p>
+    </section>
+
+    <section id="results" class="results" aria-live="polite"></section>
+  </main>
+
+  <template id="cardTemplate">
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <h2></h2>
+          <p class="muted tipo"></p>
+        </div>
+        <span class="badge"></span>
+      </div>
+      <dl>
+        <div><dt>Estado</dt><dd class="estado"></dd></div>
+        <div><dt>Município</dt><dd class="municipio"></dd></div>
+        <div><dt>Bairro</dt><dd class="bairro"></dd></div>
+        <div><dt>Endereço</dt><dd class="endereco"></dd></div>
+        <div><dt>CEP</dt><dd class="cep"></dd></div>
+        <div><dt>Terminal</dt><dd class="terminal"></dd></div>
+        <div><dt>CNPJ</dt><dd class="cnpj"></dd></div>
+        <div><dt>Horário</dt><dd class="horario"></dd></div>
+      </dl>
+      <div class="card-actions">
+        <button type="button" class="map-btn">Ver no mapa</button>
+        <a class="maps-link" href="#" target="_blank" rel="noopener">Abrir rota</a>
+      </div>
+    </article>
+  </template>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
